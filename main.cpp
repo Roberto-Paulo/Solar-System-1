@@ -386,7 +386,6 @@ int main() {
 	/* LOAD TEXTURES */
 	unsigned int texture_earth = loadTexture("resources/planets/earth2k.jpg");
 	unsigned int t_sun = loadTexture("resources/planets/2k_sun.jpg");
-	unsigned int texture_moon = loadTexture("resources/planets/2k_moon.jpg");
 	unsigned int texture_mercury = loadTexture("resources/planets/2k_mercury.jpg");
 	unsigned int texture_venus = loadTexture("resources/planets/2k_venus.jpg");	
 	unsigned int texture_mars = loadTexture("resources/planets/2k_mars.jpg");
@@ -406,7 +405,7 @@ int main() {
 	Sphere Saturn(37.0f, 36, 18);
 	Sphere Uranus(30.0f, 36, 18);
 	Sphere Neptune(30.0f, 36, 19);
-	Sphere Moon(5.5f, 36, 18);
+	
 	/* SPHERE GENERATION */
 
 	std::vector<std::string> faces
@@ -571,22 +570,7 @@ int main() {
 		
 		/* EARTH */
 		
-		/* MOON */
-		glm::mat4 model_moon;
-		xx = sin(glfwGetTime() * PlanetSpeed * 67.55f) * 50.0f;
-		zz = cos(glfwGetTime() * PlanetSpeed * 67.55f) * 50.0f;
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture_moon);
-		model_moon = glm::rotate(model_moon, glm::radians(SceneRotateY), glm::vec3(1.0f, 0.0f, 0.0f));
-		model_moon = glm::rotate(model_moon, glm::radians(SceneRotateX), glm::vec3(0.0f, 0.0f, 1.0f));
-		model_moon = glm::translate(model_moon, EarthPoint);
-		model_moon = glm::translate(model_moon, glm::vec3(xx, 0.0f, zz));
-		model_moon = glm::rotate(model_moon, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.f));
-		model_moon = glm::rotate(model_moon, glm::radians(32.4f), glm::vec3(0.0f, 1.0f, 0.f));
-		model_moon = glm::rotate(model_moon, (GLfloat)glfwGetTime() * glm::radians(32.4f) * 3.1f, glm::vec3(0.0f, 0.0f, 1.f));
-		SimpleShader.setMat4("model", model_moon);
-		Moon.Draw();
-		/* MOON */
+		
 
 
 		/* MARS */
@@ -779,27 +763,6 @@ int main() {
 
 		}
 		/* ORBITS */
-
-		/* SATURN RINGS */
-		glLineWidth(2.0f);
-		GLfloat rr = 0.55f;
-		for (int i = 0; i < 25; i++)
-		{
-			modelorb = glm::mat4(1);
-			
-			modelorb = glm::rotate(modelorb, glm::radians(SceneRotateY), glm::vec3(1.0f, 0.0f, 0.0f));
-			modelorb = glm::rotate(modelorb, glm::radians(SceneRotateX), glm::vec3(0.0f, 0.0f, 1.0f));
-			modelorb = glm::translate(modelorb, SatrunPoint);
-			modelorb = glm::rotate(modelorb, glm::radians(30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-			modelorb = glm::scale(modelorb, glm::vec3(rr, rr, rr));
-			SimpleShader.setMat4("model", modelorb);
-			glDrawArrays(GL_LINE_LOOP, 0, (GLsizei)orbVert.size() / 3);
-			if (i == 15)
-				rr += 0.030f;
-			else
-				rr += 0.01f;
-		}
-		/* SATURN RINGS */
 
 
 		/* DRAW SKYBOX */
