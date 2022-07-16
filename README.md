@@ -3,7 +3,6 @@
 - Raquel Sousa
 - Roberto Eduardo
 - Roberto Paulo
-- Vanessa Carvalho
 - Vinícius Teixeira
 
 ## Pré-requisitos para execução
@@ -13,7 +12,6 @@
 - FREETYPE
 - GLM
 - Recomendação de IDE: Visual Studio
-
 
 
 ## Pressione as seguintes teclas para interação
